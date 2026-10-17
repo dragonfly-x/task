@@ -1,0 +1,136 @@
+/* ---------- 1. CSS VARIABLES: change the theme from one place ---------- */
+:root {
+  --primary:brown;       /* main brand colour */
+  --primary-dark:grey;  /* hover colour */
+  --bg: brown;            /* page background */
+  --card: khaki;          /* card background */
+  --text: #1f2937;          /* main text */
+  --muted: #6b7280;         /* secondary text */
+  --danger: #dc2626;        /* delete button */
+  --low: #16a34a;           /* priority colours */
+  --medium: #f59e0b;
+  --high: #dc2626;
+}
+
+/* ---------- 2. RESET: remove browser default spacing ---------- */
+* {
+  box-sizing: border-box;   /* padding is included in element width */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;            /* Flexbox centres the card on the page */
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+/* ---------- 3. THE MAIN CARD ---------- */
+.app {
+  background: var(--card);
+  width: 100%;
+  max-width: 520px;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  align-self: flex-start;
+}
+
+header { text-align: center; margin-bottom: 20px; }
+h1 { color: var(--primary); }
+.subtitle { color: var(--muted); font-size: 0.9rem; }
+
+/* Visually hidden but readable by screen readers (accessibility) */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ---------- 4. FORM LAYOUT with Flexbox ---------- */
+#task-form { display: flex; gap: 8px; margin-bottom: 16px; }
+#task-input { flex: 1; }   /* input takes all remaining space */
+
+input, select, button {
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+input:focus, select:focus {
+  outline: 2px solid var(--primary);
+  border-color: transparent;
+}
+
+button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;   /* smooth hover animation */
+}
+button:hover { background: var(--primary-dark); }
+
+/* ---------- 5. FILTER BUTTONS ---------- */
+.filters { display: flex; gap: 8px; margin-bottom: 16px; }
+.filter-btn { background: #e5e7eb; color: var(--text); flex: 1; }
+.filter-btn:hover { background: #d1d5db; }
+.filter-btn.active { background: var(--primary); color: #fff; }
+
+/* ---------- 6. TASK LIST ---------- */
+#task-list { list-style: none; }
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.task-text { flex: 1; word-break: break-word; cursor: pointer; }
+
+/* Class added by JS when a task is completed */
+.task.done .task-text { text-decoration: line-through; color: var(--muted); }
+
+/* Small coloured badge showing the priority */
+.badge {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.badge.low    { background: var(--low); }
+.badge.medium { background: var(--medium); }
+.badge.high   { background: var(--high); }
+
+.delete-btn { background: transparent; color: var(--danger); padding: 4px 8px; }
+.delete-btn:hover { background: #fee2e2; }
+
+.empty { text-align: center; color: var(--muted); padding: 20px; }
+
+/* ---------- 7. FOOTER ---------- */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+#clear-completed { background: transparent; color: var(--muted); }
+#clear-completed:hover { color: var(--danger); background: transparent; }
+
+/* ---------- 8. RESPONSIVE DESIGN (screens under 480px) ---------- */
+@media (max-width: 480px) {
+  .app { padding: 18px; }
+  #task-form { flex-wrap: wrap; }   /* form items wrap onto 2 lines */
+  #task-input { flex-basis: 100%; }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- 1. DOCTYPE tells the browser this is modern HTML5 -->
+<html lang="en">
+<head>
+  <!-- 2. Character encoding so all symbols display correctly -->
+  <meta charset="UTF-8">
+  <!-- 3. Viewport tag makes the page responsive on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskMaster - To-Do List App</title>
+  <!-- 4. Link the external stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 5. <main> holds the primary content (semantic HTML) -->
+  <main class="app">
+
+    <header>
+      <button id="logoutBtn">Logout</button>
+      <h1>TaskMaster</h1>
+      <p class="subtitle">Plan your day. Finish your tasks.</p>
+    </header>
+
+    <!-- 6. Form to add a new task. The JS listens for its "submit" event -->
+    <form id="task-form">
+      <label for="task-input" class="sr-only">New task</label>
+      <input type="text" id="task-input" placeholder="What needs to be done?"
+             maxlength="100" required>
+
+      <label for="priority-select" class="sr-only">Priority</label>
+      <select id="priority-select">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <button type="submit">Add</button>
+    </form>
+
+    <!-- 7. Filter buttons. data-filter stores which filter each button applies -->
+    <nav class="filters" aria-label="Task filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="completed">Completed</button>
+    </nav>
+
+    <!-- 8. Empty list: JavaScript fills this with <li> items -->
+    <ul id="task-list"></ul>
+
+    <!-- 9. Message shown when there are no tasks to display -->
+    <p id="empty-message" class="empty" hidden>No tasks here yet.</p>
+
+    <!-- 10. Footer with live statistics and a clear button -->
+    <footer>
+      <span id="stats">0 tasks left</span>
+      <button id="clear-completed" type="button">Clear completed</button>
+    </footer>
+
+  </main>
+
+  <!-- 11. Script is loaded LAST so the HTML elements already exist -->
+  <script src="script.js"></script>
+</body>
+</html>
