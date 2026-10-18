@@ -57,8 +57,33 @@ button:hover{
     background: #333;
     transform: scale(1.02);
 }
-@media (max-width: 480px) {
-  .login-card { padding: 18px; }
-  #loginForm { flex-wrap: wrap; }   /* form items wrap onto 2 lines */
-  #loginForm { flex-basis: 100%; }
+/* LOGIN - MOBILE FIX */
+.login-box {
+  width: 90%;
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.login-box input, 
+.login-box button {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  font-size: 16px; /* prevents iPhone zoom */
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .login-box {
+    margin: 30px auto;
+    width: 92%;
+    padding: 20px;
+  }
+  .login-box h2 {
+    font-size: 22px;
+    text-align: center;
+  }
 }
